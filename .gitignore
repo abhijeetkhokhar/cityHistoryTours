@@ -1,8 +1,9 @@
 node_modules
 .next
 out
-.env*.local
-.env
+# Environment files (secrets) — keep the template tracked
+.env*
+!.env.example
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
