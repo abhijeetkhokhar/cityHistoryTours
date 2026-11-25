@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CITY HISTORY TOURS — DESIGN SYSTEM
+   All typography, spacing, surfaces and buttons are defined here and reused
+   by every component, so the whole site stays consistent.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-logo: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, "Times New Roman", serif;
+
+  --color-ivory: #ffffff;
+  --color-sand: #f5f6f7;
+  --color-parchment: #e5e7ea;
+  --color-ink: #1b1917;
+  --color-ink-soft: #33302d;
+  --color-muted: #55524e;
+  --color-line: #e6e7e9;
+  --color-terracotta: #a5452a;
+  --color-terracotta-dark: #873620;
+  --color-gold: #c4a26b;
+  --color-gold-light: #e3cfa6;
+
+  --shadow-card: 0 1px 2px rgb(27 25 23 / 0.04), 0 4px 14px -6px rgb(27 25 23 / 0.10);
+  --shadow-lift: 0 2px 4px rgb(27 25 23 / 0.05), 0 12px 28px -12px rgb(27 25 23 / 0.22);
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-base leading-relaxed text-ink antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-normal text-ink;
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  ::selection {
+    @apply bg-gold-light text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
+@layer components {
+  /* ── Layout ─────────────────────────────────────────────── */
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+  /* Standard section rhythm: one value used site-wide */
+  .section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .section-tight {
+    @apply py-12 sm:py-14;
+  }
+  .section-alt {
+    @apply bg-sand;
+  }
+
+  /* ── Typography scale ───────────────────────────────────── */
+  .t-display {
+    /* Homepage hero headline */
+    @apply font-display text-[2.375rem] leading-[1.06] sm:text-[3.125rem] lg:text-[3.75rem];
+    letter-spacing: -0.02em;
+  }
+  .t-h1 {
+    /* Page and tour hero titles */
+    @apply font-display text-[2.125rem] leading-[1.08] sm:text-[2.75rem] lg:text-[3.25rem];
+    letter-spacing: -0.015em;
+  }
+  .t-h2 {
+    /* Section titles */
+    @apply font-display text-[1.75rem] leading-[1.15] sm:text-[2.25rem];
+  }
+  .t-h3 {
+    /* Sub-section and card titles */
+    @apply font-display text-[1.25rem] leading-snug sm:text-[1.3125rem];
+  }
+  .t-h4 {
+    @apply font-display text-[1.0625rem] leading-snug;
+  }
+  .t-lead {
+    @apply text-base leading-relaxed text-muted sm:text-[1.0625rem];
+  }
+  .t-body {
+    @apply text-base leading-relaxed text-muted;
+  }
+  .t-small {
+    @apply text-[0.875rem] leading-relaxed text-muted;
+  }
+  .t-label {
+    @apply text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-terracotta;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-6 bg-current opacity-70;
+  }
+  .eyebrow-light {
+    @apply text-gold-light;
+  }
+  .prose-tour p + p {
+    @apply mt-4;
+  }
+
+  /* ── Surfaces ───────────────────────────────────────────── */
+  .card {
+    @apply rounded-xl border border-line/80 bg-white shadow-card;
+  }
+  .panel {
+    @apply rounded-xl border border-line/80 bg-white p-6 sm:p-7;
+  }
+  .panel-muted {
+    @apply rounded-xl border border-line/80 bg-sand/70 p-6 sm:p-7;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm text-white backdrop-blur-sm;
+  }
+
+  /* ── Buttons ────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full font-semibold transition-colors duration-200;
+  }
+  .btn-sm {
+    @apply h-9 px-4 text-[0.8125rem];
+  }
+  .btn-md {
+    @apply h-10 px-5 text-sm;
+  }
+  .btn-lg {
+    @apply h-11 px-6 text-[0.9375rem];
+  }
+  .btn-primary {
+    @apply bg-terracotta text-white hover:bg-terracotta-dark;
+  }
+  .btn-dark {
+    @apply bg-ink text-ivory hover:bg-ink-soft;
+  }
+  .btn-outline {
+    @apply border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-ivory;
+  }
+  .btn-light {
+    @apply bg-ivory text-ink hover:bg-white;
+  }
+  .btn-outline-light {
+    @apply border border-white/45 text-white hover:bg-white hover:text-ink;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1 text-sm font-semibold text-ink transition-colors hover:text-terracotta;
+  }
+
+  /* ── Forms ──────────────────────────────────────────────── */
+  .field {
+    @apply mt-1.5 block h-11 w-full rounded-lg border bg-white px-3.5 text-[0.9375rem] text-ink shadow-none transition-colors placeholder:text-muted/60 focus:border-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta/15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
